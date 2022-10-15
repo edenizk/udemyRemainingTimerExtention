@@ -57,7 +57,6 @@ const setTimer = (val, timerEl) => {
 
   if (result.error) {
     timerEl.innerHTML = result.text;
-    document.body.insertAdjacentHTML('beforeend', '<strong>inserted text</strong>');
     return;
   }
 
