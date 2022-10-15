@@ -1,6 +1,6 @@
 function getLeftTime() {  
   const sections = document.querySelectorAll('[data-purpose=curriculum-section-container] > [data-purpose]');
-  console.log('Opening Sections...', sections);
+  // console.log('Opening Sections...', sections);
 
   if (!sections.length) {
     return {error: true, text: 'No section found.\nBe sure that you are at the udemy course tab and you started the course'};
@@ -16,9 +16,9 @@ function getLeftTime() {
     }
   })
   
-  console.log('Opening Sections DONE');
+  // console.log('Opening Sections DONE');
   
-  console.log('Calculation Total ...')
+  // console.log('Calculation Total ...')
   
   let totalMinutes = 0;
   
@@ -52,7 +52,7 @@ const setTimer = (val, timerEl) => {
     timerEl.innerHTML = "Couldn't calculate try to open extension again";
     return;
   }
-  console.log('val', val);
+  // console.log('val', val);
   const result = val[0].result;
 
   if (result.error) {
@@ -66,9 +66,9 @@ const setTimer = (val, timerEl) => {
 
 const callback = (tabs) => {
   const currentTab = tabs[0]; // there will be only one in this array
-  console.log('currentTab', currentTab);
+  // console.log('currentTab', currentTab);
   const timerEl = document.querySelector('#timer');
-  console.log('timerEl', timerEl);
+  // console.log('timerEl', timerEl);
   timerEl.innerHTML = 'Calculating...';
 
   chrome.scripting.executeScript({
