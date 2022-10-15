@@ -2,7 +2,7 @@
   "name": "Udemy remaining time calculator",
   "description": "It's showing remaining time left for the course to finish",
   "homepage_url": "https://github.com/llagerlof/fresh-chrome-extension",
-  "version": "1.0",
+  "version": "0.0.0.1",
   "manifest_version": 3,
   "action": {
     "default_title": "Click to see how long time left for finishing course",
