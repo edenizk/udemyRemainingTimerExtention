@@ -22,16 +22,20 @@ function getLeftTime() {
   
   let totalMinutes = 0;
   
-  const items = document.querySelectorAll('.item-link.udlite-custom-focus-visible') // each item
-
+  const items = document.querySelectorAll('.item-link.item-link--common--RP3fp.ud-custom-focus-visible') // each item
+  console.log(items.length + " Items were found.") // TODO it finds to many, fix or ignore empty ones
   if (!items.length) {
     return {error: true, text: 'No items found, be sure that sections are opened'};
   }
   
   items.forEach((item) => {
+    // TODO find if checked or not
     const isChecked = item.querySelector('.udlite-real-toggle-input').checked;
+
+    console.log(isChecked)
   
     if (!isChecked) {
+      // ud-icon ud-icon-xsmall span 
       let timer = item.querySelector('.udlite-text-xs span');
     
       if (timer) {
