@@ -30,8 +30,6 @@ function getLeftTime() {
   items.forEach((item) => {
     const isChecked = item.querySelector('.ud-sr-only.ud-real-toggle-input').checked;
 
-    console.log(isChecked)
-  
     if (!isChecked) {
       // TODO get time
       // ud-icon ud-icon-xsmall span 
