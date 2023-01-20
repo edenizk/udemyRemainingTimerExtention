@@ -23,7 +23,7 @@ function getLeftTime() {
   let totalMinutes = 0;
   
   const items = document.querySelectorAll('.item-link.item-link--common--RP3fp.ud-custom-focus-visible') // each item
-  console.log(items.length + " Items were found.") // TODO it also finds the Quizzes, do not check for time there
+  console.log(items.length + " Items were found.")
   if (!items.length) {
     return {error: true, text: 'No items found, be sure that sections are opened'};
   }
@@ -31,12 +31,9 @@ function getLeftTime() {
     const isChecked = item.querySelector('.ud-sr-only.ud-real-toggle-input').checked;
 
     if (!isChecked) {
-      // TODO get time
-      // ud-icon ud-icon-xsmall span 
-      let timer = item.querySelector('.udlite-text-xs span');
-    
+      let timer = item.querySelector('.curriculum-item-link--bottom-row--1j052 span');
       if (timer) {
-        time = timer.innerText.replace('min', '');
+        time = timer.innerHTML.replace('min', '');
         totalMinutes+= parseInt(time);
       }
     }
