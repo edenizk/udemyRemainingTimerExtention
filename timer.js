@@ -23,7 +23,6 @@ function getLeftTime() {
   let totalMinutes = 0;
   
   const items = document.querySelectorAll('.item-link.item-link--common--RP3fp.ud-custom-focus-visible') // each item
-  console.log(items.length + " Items were found.")
   if (!items.length) {
     return {error: true, text: 'No items found, be sure that sections are opened'};
   }
