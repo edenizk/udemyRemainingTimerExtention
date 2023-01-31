@@ -22,20 +22,17 @@ function getLeftTime() {
   
   let totalMinutes = 0;
   
-  const items = document.querySelectorAll('.item-link.udlite-custom-focus-visible') // each item
-
+  const items = document.querySelectorAll('.item-link.item-link--common--RP3fp.ud-custom-focus-visible') // each item
   if (!items.length) {
     return {error: true, text: 'No items found, be sure that sections are opened'};
   }
-  
   items.forEach((item) => {
-    const isChecked = item.querySelector('.udlite-real-toggle-input').checked;
-  
+    const isChecked = item.querySelector('.ud-sr-only.ud-real-toggle-input').checked;
+
     if (!isChecked) {
-      let timer = item.querySelector('.udlite-text-xs span');
-    
+      let timer = item.querySelector('.curriculum-item-link--bottom-row--1j052 span');
       if (timer) {
-        time = timer.innerText.replace('min', '');
+        time = timer.innerHTML.replace('min', '');
         totalMinutes+= parseInt(time);
       }
     }
