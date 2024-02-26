@@ -1,6 +1,5 @@
 function getLeftTime() {  
   const sections = document.querySelectorAll('[data-purpose=curriculum-section-container] > [data-purpose]');
-  // console.log('Opening Sections...', sections);
 
   if (!sections.length) {
     return {error: true, text: 'No section found.\nBe sure that you are at the udemy course tab and you started the course'};
@@ -16,54 +15,55 @@ function getLeftTime() {
     }
   })
   
-  // console.log('Opening Sections DONE');
-  
-  // console.log('Calculation Total ...')
-  
   let totalMinutes = 0;
-  const items = document.querySelectorAll('.item-link.item-link--common--j8WLy.ud-custom-focus-visible') // each item
+  const items = document.querySelectorAll('[data-purpose^="curriculum-item-"][class*="item-link--common--"]') // each item
   if (!items.length) {
     return {error: true, text: 'No items found, be sure that sections are opened'};
   }
-  items.forEach((item) => {
-    const isChecked = item.querySelector('.ud-sr-only.ud-real-toggle-input').checked;
-
-    if (!isChecked) {
-      let timer = item.querySelector('.curriculum-item-link--bottom-row--AVBnl span');
-      if (timer) {
-        time = timer.innerHTML.replace('min', '');
-        totalMinutes+= parseInt(time);
+  try {
+    items.forEach((item) => {
+      const checkbox = item.querySelector('input[data-purpose="progress-toggle-button"]')
+      const isChecked = checkbox.checked;
+  
+      if (!isChecked) {
+        let timer = item.querySelector('[class^="curriculum-item-link--bottom-row"] span');
+        if (timer) {
+          time = timer.innerHTML.replace('min', '');
+          totalMinutes+= parseInt(time);
+        }
       }
-    }
-  })
-
-  const hours = Math.floor(totalMinutes / 60);          
-  const minutes = totalMinutes % 60;
-
-  return {error: false, hours, minutes};
+    })
+  
+    const hours = Math.floor(totalMinutes / 60);          
+    const minutes = totalMinutes % 60;
+  
+    return {error: false, hours, minutes};
+  } catch (error) {
+    return {error: true, text: 'Something went wrong please create an issue at <a href="https://github.com/edenizk/udemyRemainingTimerExtention/issues/new" target="_blank">https://github.com/edenizk/udemyRemainingTimerExtention/issues/new</a>. Error msg' + JSON.stringify(error)};
+  }
 }
 
 const setTimer = (val, timerEl) => {
   if (!val) {
+    timerEl.classList.add('error');
     timerEl.innerHTML = "Couldn't calculate try to open extension again";
     return;
   }
-  // console.log('val', val);
   const result = val[0].result;
 
   if (result.error) {
+    timerEl.classList.add('error');
     timerEl.innerHTML = result.text;
     return;
   }
 
+  timerEl.classList.remove('error');
   timerEl.innerHTML = `${result.hours}H:${result.minutes}M Left`;
 }
 
 const callback = (tabs) => {
   const currentTab = tabs[0]; // there will be only one in this array
-  // console.log('currentTab', currentTab);
   const timerEl = document.querySelector('#timer');
-  // console.log('timerEl', timerEl);
   timerEl.innerHTML = 'Calculating...';
 
   chrome.scripting.executeScript({
