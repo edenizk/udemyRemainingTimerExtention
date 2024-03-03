@@ -1,6 +1,6 @@
 {
-  "name": "Udemy remaining time calculator",
-  "description": "It's showing remaining time left for the course to finish",
+  "name": "Udemy Remaining Time Calculator",
+  "description": "Udemy Remaining Time Calculator: Optimize Udemy learning with real-time progress updates.",
   "homepage_url": "https://github.com/edenizk/udemyRemainingTimerExtention",
   "version": "0.0.2",
   "manifest_version": 3,

@@ -2,6 +2,11 @@
 It's showing remaining time left for the course to finish
 
 # Setup
+
+## By chrome extension store
+Work in progress :)  
+
+## By GitHub
 1. Download this repo  
 ![image](https://user-images.githubusercontent.com/35309972/196002502-79932428-d045-4110-ba01-1f09f5666499.png)
 
