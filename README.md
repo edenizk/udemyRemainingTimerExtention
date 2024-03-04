@@ -1,10 +1,12 @@
-# Udemy Remaining Timer Extention For Chrome
+Item logo image for Udemy Remaining Time Calculator
+Udemy Remaining Time Calculator# Udemy Remaining Timer Extention For Chrome
 It's showing remaining time left for the course to finish
 
 # Setup
 
 ## By chrome extension store
-Work in progress :)  
+Now you can find the extension in google extension store 🙂  
+[Udemy Remaining Time Calculator](https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg)
 
 ## By GitHub
 1. Download this repo  
