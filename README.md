@@ -6,7 +6,7 @@ It's showing remaining time left for the course to finish
 
 ## By chrome extension store
 Now you can find the extension in google extension store 🙂  
-[Udemy Remaining Time Calculator](https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg)
+[Udemy Remaining Time Calculator](https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg)  
 (Also I would be glad for any ratings or comments 🙂)
 
 ## By GitHub
