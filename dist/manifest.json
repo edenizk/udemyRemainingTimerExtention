@@ -2,11 +2,11 @@
   "name": "Udemy Remaining Time Calculator",
   "description": "Udemy Remaining Time Calculator: Optimize Udemy learning with real-time progress updates.",
   "homepage_url": "https://github.com/edenizk/udemyRemainingTimerExtention",
-  "version": "0.0.2",
+  "version": "1.0.2",
   "manifest_version": 3,
   "action": {
     "default_title": "Click to see how long time left for finishing course",
-    "default_icon": "icon.png",
+    "default_icon": "icons/icon.png",
     "default_popup": "index.html"
   },
   "permissions": [

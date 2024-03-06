@@ -58,7 +58,7 @@ const setTimer = (val, timerEl) => {
   }
 
   timerEl.classList.remove('error');
-  timerEl.innerHTML = `${result.hours}H:${result.minutes}M Left`;
+  timerEl.innerHTML = `${result.hours}:${result.minutes} Left`;
 }
 
 const callback = (tabs) => {

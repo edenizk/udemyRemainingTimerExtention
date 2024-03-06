@@ -1,0 +1,1 @@
+chrome.runtime.onInstalled.addListener((function(){chrome.tabs.onActivated.addListener((async c=>{const e=await chrome.tabs.get(c.tabId);e.url.includes("udemy.com/course")?(chrome.action.setIcon({path:"icons/icon.png"}),chrome.action.enable(e.tabId)):(chrome.action.setIcon({path:"icons/icon_disabled.png"}),chrome.action.disable(e.tabId))}))}));
