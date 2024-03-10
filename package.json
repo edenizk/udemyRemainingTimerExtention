@@ -1,11 +1,11 @@
 {
   "name": "udemy-remaining-time-calculator",
   "description": "Udemy Remaining Time Calculator: Optimize Udemy learning with real-time progress updates.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cross-env NODE_ENV=production TAIL_ENV=production webpack  && npx tailwindcss -o ./dist/style.css --minify",
+    "build": "cross-env NODE_ENV=production TAIL_ENV=production webpack && npx tailwindcss -o ./dist/style.css --minify",
     "dev": "cross-env NODE_ENV=production webpack --watch && npx tailwindcss -i ./src/input.css -o ./dist/style.css --watch"
   },
   "keywords": [],

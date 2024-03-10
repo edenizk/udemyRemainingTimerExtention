@@ -4,6 +4,19 @@ let sections = [];
 
 const fetchPanelContainer = () => {
   const panelContainer = document.querySelector('[data-purpose="curriculum-section-container"]');
+  sections = panelContainer.querySelectorAll('[data-purpose=curriculum-section-container] > [data-purpose]');
+
+  sections.forEach((section) => {
+    console.log('section', section)
+    const header = section.querySelector('div');
+    const checkbox = section.querySelector('span');
+    const isExpanded = checkbox.getAttribute('data-checked');
+
+    if (!isExpanded) {
+      header.click();
+    }
+  });
+
   return panelContainer.outerHTML;
 };
 
@@ -21,16 +34,6 @@ const getLeftTime = (isFullCourse = true) => {
   }
 
   let totalMinutes = 0;
-
-  tempSections.forEach((section) => {
-    const header = section.querySelector('div');
-    const checkbox = section.querySelector('span');
-    const isExpanded = checkbox.getAttribute('data-checked');
-
-    if (!isExpanded) {
-      header.click();
-    }
-  });
 
   let items = isFullCourse
     ? panelContainer.querySelectorAll('[data-purpose^="curriculum-item-"][class*="item-link--common--"]')
