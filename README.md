@@ -1,6 +1,12 @@
-Item logo image for Udemy Remaining Time Calculator
-Udemy Remaining Time Calculator# Udemy Remaining Timer Extention For Chrome
-It's showing remaining time left for the course to finish
+![Chrome Web Store Stars](https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg)
+
+# Udemy Remaining Time Calculator
+
+## Udemy Remaining Timer Extension For Chrome
+
+Welcome to the Udemy Remaining Time Calculator! 🕒
+
+This extension for Chrome displays the remaining time left for your course to finish. 
 
 # Setup
 
@@ -20,3 +26,17 @@ Now you can find the extension in google extension store 🙂
 ![This is an image](https://wd.imgix.net/image/BrQidfK9jaQyIHwdw91aVpkPiib2/iYdLKFsJ1KSVGLhbLRvS.png?auto=format&w=650)
 
 More info at https://developer.chrome.com/docs/extensions/mv2/getstarted/#manifest
+
+
+# Welcome to Contribution 🎉
+
+### Getting Started
+To contribute to this project, follow these simple steps:
+
+1. Install packages using `yarn` or `yarn install`
+   
+2. Start the project by running `yarn dev` in your terminal.
+
+3. Additionally, on a split terminal, run `npx tailwindcss -i ./src/input.css -o ./dist/style.css --watch`. (One-command setup might come later!)
+
+And that's it! You're all set to contribute. Feel free to create an issue and assign yourself to avoid conflicts with others. 😊
