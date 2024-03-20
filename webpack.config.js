@@ -6,7 +6,6 @@ const config = {
 context: __dirname + '/src',
     entry: {
     background: "./background.js",
-    buttons: "./buttons.js",
     execute: "./execute.js",
     timer: "./timer.js",
   },
@@ -32,7 +31,6 @@ context: __dirname + '/src',
       patterns: [
         // { from: "timer.js", to: "timer.js" },
         // { from: "background.js", to: "background.js" },
-        // { from: "buttons.js", to: "buttons.js" },
         // { from: "execute.js", to: "execute.js" },
         { from: "icons", to: "icons" },
         { from: "index.html", to: "index.html" },

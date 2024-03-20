@@ -82,6 +82,10 @@ const setTimer = (val, timerEl) => {
 
 const callback = (tabs) => {
   const currentTab = tabs[0];
+  const timerSection = document.querySelector('.timer-section');
+  const timerSectionButton = document.querySelector('.timer-section-button');
+  const playbackSection = document.querySelector('.playback-section');
+  const playbackButton = document.querySelector('.playback-section-button');
   const wholeCourseButton = document.querySelector('.whole-course');
   const currentSectionButton = document.querySelector('.current-section');
   const timerEl = document.querySelector('#timer');
@@ -105,12 +109,35 @@ const callback = (tabs) => {
     setTimer(val, timerEl);
   });
 
+  console.log('timer', timerSection);
+  console.log('playback', playbackSection);
+  console.log('timerSectionButton', timerSectionButton);
+  console.log('playbackButton', playbackButton);
+  timerSectionButton.addEventListener('click', () => {
+    if (timerSectionButton.classList.contains('active')) return;
+
+    timerSection.classList.add('active');
+    timerSectionButton.classList.add('active');
+    playbackSection.classList.remove('active');
+    playbackButton.classList.remove('active');
+  });
+
+  playbackButton.addEventListener('click', () => {
+    if (playbackButton.classList.contains('active')) return;
+
+    playbackSection.classList.add('active');
+    playbackButton.classList.add('active');
+    timerSection.classList.remove('active');
+    timerSectionButton.classList.remove('active');
+  });
+
   chrome.scripting.executeScript(
     {
       target: { tabId: currentTab.id },
       func: fetchPanelContainer,
     },
     (result) => {
+      if (!result || !result.length) return;
       const panel = result[0].result;
       const parser = new DOMParser();
       panelContainer = parser.parseFromString(panel, 'text/html');
