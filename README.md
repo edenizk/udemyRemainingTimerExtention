@@ -1,4 +1,4 @@
-![Chrome Web Store Stars](https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg)
+[![Chrome Web Store Stars](https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg)](https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg)
 
 # Udemy Remaining Time Calculator
 
