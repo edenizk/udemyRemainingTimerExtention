@@ -10,6 +10,12 @@
       body {
         height: fit-content;
       }
+
+      .error {
+        font-size: 16px;
+        max-width: 600px;
+        text-wrap: wrap !important;
+      }
     </style>
   </head>
 
@@ -66,11 +72,11 @@
         </h1>
   
         <div class="flex items-center justify-around mt-6">
-          <span class="p-3 cursor-pointer border border-black hover:bg-porcelain">
+          <span class="playback-section--minus p-3 cursor-pointer border border-black hover:bg-porcelain">
             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M232-444v-72h496v72H232Z"/></svg>
           </span>
-          <span class="text-6xl">1.0</span>
-          <span class="p-3 cursor-pointer border border-black hover:bg-porcelain">
+          <span class="playback-section--rate text-6xl">1.0</span>
+          <span class="playback-section--plus p-3 cursor-pointer border border-black hover:bg-porcelain">
             <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M444-444H240v-72h204v-204h72v204h204v72H516v204h-72v-204Z"/></svg>
           </span>
         </div>

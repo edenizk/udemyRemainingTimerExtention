@@ -1,8 +1,20 @@
+const playbackRateTextClass = '[class*="playback-rate--trigger-text--"]';
+const videoClass = '[class*="video-player--video-player--"]';
+let playbackEl;
 let panelContainer;
+let getPlaybackRate = 1.0;
 let currentSection = [];
 let sections = [];
 
 const fetchPanelContainer = () => {
+  const rateTextEl = document.querySelector(playbackRateTextClass);
+  let playbackRate = 1.0;
+
+  if (rateTextEl) {
+    console.log('videoEl', rateTextEl.innerText);
+    playbackRate = parseFloat(rateTextEl.innerText.replace('x', ''));
+  }
+
   const panelContainer = document.querySelector('[data-purpose="curriculum-section-container"]');
   sections = panelContainer.querySelectorAll('[data-purpose=curriculum-section-container] > [data-purpose]');
 
@@ -17,7 +29,10 @@ const fetchPanelContainer = () => {
     }
   });
 
-  return panelContainer.outerHTML;
+  return {
+    panel: panelContainer.outerHTML,
+    playbackRate: playbackRate
+  };
 };
 
 const fetchSections = (panel) => {
@@ -80,8 +95,32 @@ const setTimer = (val, timerEl) => {
   timerEl.innerHTML = `${val.hours}:${val.minutes}H Left`;
 };
 
+const handleSpeedChange = (val) => {
+  getPlaybackRate = val;
+  playbackEl.innerText = val;
+  console.log('handleSpeedChange', val);
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    console.log('query')
+    // chrome.tabs.sendMessage(tabs[0].id, val);
+    chrome.tabs.sendMessage(tabs[0].id, 'changeDOM');
+
+  });
+}
+
 const callback = (tabs) => {
   const currentTab = tabs[0];
+  playbackEl = document.querySelector('.playback-section--rate');
+  const playbackMinus = document.querySelector('.playback-section--minus');
+  const playbackPlus = document.querySelector('.playback-section--plus');
+
+  playbackMinus.addEventListener('click', () => {
+    handleSpeedChange(getPlaybackRate - 0.25);
+  });
+
+  playbackPlus.addEventListener('click', () => {
+    handleSpeedChange(getPlaybackRate + 0.25);
+  });
+
   const timerSection = document.querySelector('.timer-section');
   const timerSectionButton = document.querySelector('.timer-section-button');
   const playbackSection = document.querySelector('.playback-section');
@@ -92,6 +131,8 @@ const callback = (tabs) => {
   timerEl.innerHTML = 'Calculating...';
 
   wholeCourseButton.addEventListener('click', () => {
+    console.log('timer', getPlaybackRate)
+
     if (wholeCourseButton.classList.contains('active')) return;
 
     wholeCourseButton.classList.add('active');
@@ -138,7 +179,13 @@ const callback = (tabs) => {
     },
     (result) => {
       if (!result || !result.length) return;
-      const panel = result[0].result;
+
+      console.log('result[0].result', result[0].result)
+      if (playbackEl) {
+        getPlaybackRate = result[0].result.playbackRate;
+        playbackEl.innerText = getPlaybackRate;
+      }
+      const panel = result[0].result.panel;
       const parser = new DOMParser();
       panelContainer = parser.parseFromString(panel, 'text/html');
 
