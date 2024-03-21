@@ -1,1 +1,0 @@
-chrome.scripting.executeScript({target:{tabId},files:["timer.js"]});
