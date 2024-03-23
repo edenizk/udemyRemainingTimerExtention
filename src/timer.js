@@ -164,14 +164,14 @@ const callback = (tabs) => {
   console.log('playback', playbackSection);
   console.log('timerSectionButton', timerSectionButton);
   console.log('playbackButton', playbackButton);
-  timerSectionButton.addEventListener('click', () => {
-    if (timerSectionButton.classList.contains('active')) return;
+  // timerSectionButton.addEventListener('click', () => {
+  //   if (timerSectionButton.classList.contains('active')) return;
 
-    timerSection.classList.add('active');
-    timerSectionButton.classList.add('active');
-    playbackSection.classList.remove('active');
-    playbackButton.classList.remove('active');
-  });
+  //   timerSection.classList.add('active');
+  //   timerSectionButton.classList.add('active');
+  //   playbackSection.classList.remove('active');
+  //   playbackButton.classList.remove('active');
+  // });
 
   // playbackButton.addEventListener('click', () => {
   //   if (playbackButton.classList.contains('active')) return;
