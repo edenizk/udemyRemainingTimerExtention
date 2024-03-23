@@ -1,8 +1,6 @@
-[![Chrome Web Store Stars](https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg)](https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg)
+[![Chrome Web Store Stars](https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg?style=for-the-badge&label=Rate%20Us&labelColor=%232D2F31&color=%235624d0)](https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg)
 
-# Udemy Remaining Time Calculator
-
-## Udemy Remaining Timer Extension For Chrome
+# Udemy Remaining Timer Extension For Chrome
 
 Welcome to the Udemy Remaining Time Calculator! 🕒
 

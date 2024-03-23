@@ -1,8 +1,20 @@
+const playbackRateTextClass = '[class*="playback-rate--trigger-text--"]';
+const videoClass = '[class*="video-player--video-player--"]';
+let playbackEl;
 let panelContainer;
+let getPlaybackRate = 1.0;
 let currentSection = [];
 let sections = [];
 
 const fetchPanelContainer = () => {
+  const rateTextEl = document.querySelector(playbackRateTextClass);
+  let playbackRate = 1.0;
+
+  if (rateTextEl) {
+    console.log('videoEl', rateTextEl.innerText);
+    playbackRate = parseFloat(rateTextEl.innerText.replace('x', ''));
+  }
+
   const panelContainer = document.querySelector('[data-purpose="curriculum-section-container"]');
   sections = panelContainer.querySelectorAll('[data-purpose=curriculum-section-container] > [data-purpose]');
 
@@ -17,7 +29,19 @@ const fetchPanelContainer = () => {
     }
   });
 
-  return panelContainer.outerHTML;
+  let checkboxes = panelContainer.querySelectorAll('input[data-purpose="progress-toggle-button"]');
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = checkbox.checked;
+    if (checkbox.checked) {
+      checkbox.setAttribute('ischecked', '');
+    }
+  });
+
+  return {
+    panel: panelContainer.outerHTML,
+    playbackRate: playbackRate
+  };
 };
 
 const fetchSections = (panel) => {
@@ -46,7 +70,7 @@ const getLeftTime = (isFullCourse = true) => {
   try {
     items.forEach((item) => {
       const checkbox = item.querySelector('input[data-purpose="progress-toggle-button"]');
-      const isChecked = checkbox.checked;
+      const isChecked = checkbox.hasAttribute('ischecked');
 
       if (!isChecked) {
         let timer = item.querySelector('[class^="curriculum-item-link--bottom-row"] span');
@@ -77,17 +101,48 @@ const setTimer = (val, timerEl) => {
   }
 
   timerEl.classList.remove('error');
-  timerEl.innerHTML = `${val.hours}:${val.minutes}H Left`;
+  timerEl.innerHTML = `${val.hours}hr ${val.minutes}min left`;
 };
 
+const handleSpeedChange = (val) => {
+  getPlaybackRate = val;
+  playbackEl.innerText = val;
+  console.log('handleSpeedChange', val);
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    console.log('query')
+    // chrome.tabs.sendMessage(tabs[0].id, val);
+    chrome.tabs.sendMessage(tabs[0].id, 'changeDOM');
+
+  });
+}
+
 const callback = (tabs) => {
+  // TODO: divide this function in pieces
   const currentTab = tabs[0];
+  // playbackEl = document.querySelector('.playback-section--rate');
+  // const playbackMinus = document.querySelector('.playback-section--minus');
+  // const playbackPlus = document.querySelector('.playback-section--plus');
+
+  // playbackMinus.addEventListener('click', () => {
+  //   handleSpeedChange(getPlaybackRate - 0.25);
+  // });
+
+  // playbackPlus.addEventListener('click', () => {
+  //   handleSpeedChange(getPlaybackRate + 0.25);
+  // });
+
+  const timerSection = document.querySelector('.timer-section');
+  const timerSectionButton = document.querySelector('.timer-section-button');
+  const playbackSection = document.querySelector('.playback-section');
+  const playbackButton = document.querySelector('.playback-section-button');
   const wholeCourseButton = document.querySelector('.whole-course');
   const currentSectionButton = document.querySelector('.current-section');
   const timerEl = document.querySelector('#timer');
   timerEl.innerHTML = 'Calculating...';
 
   wholeCourseButton.addEventListener('click', () => {
+    console.log('timer', getPlaybackRate)
+
     if (wholeCourseButton.classList.contains('active')) return;
 
     wholeCourseButton.classList.add('active');
@@ -105,13 +160,42 @@ const callback = (tabs) => {
     setTimer(val, timerEl);
   });
 
+  console.log('timer', timerSection);
+  console.log('playback', playbackSection);
+  console.log('timerSectionButton', timerSectionButton);
+  console.log('playbackButton', playbackButton);
+  // timerSectionButton.addEventListener('click', () => {
+  //   if (timerSectionButton.classList.contains('active')) return;
+
+  //   timerSection.classList.add('active');
+  //   timerSectionButton.classList.add('active');
+  //   playbackSection.classList.remove('active');
+  //   playbackButton.classList.remove('active');
+  // });
+
+  // playbackButton.addEventListener('click', () => {
+  //   if (playbackButton.classList.contains('active')) return;
+
+  //   playbackSection.classList.add('active');
+  //   playbackButton.classList.add('active');
+  //   timerSection.classList.remove('active');
+  //   timerSectionButton.classList.remove('active');
+  // });
+
   chrome.scripting.executeScript(
     {
       target: { tabId: currentTab.id },
       func: fetchPanelContainer,
     },
     (result) => {
-      const panel = result[0].result;
+      if (!result || !result.length) return;
+
+      console.log('result[0].result', result[0].result)
+      if (playbackEl) {
+        getPlaybackRate = result[0].result.playbackRate;
+        playbackEl.innerText = getPlaybackRate;
+      }
+      const panel = result[0].result.panel;
       const parser = new DOMParser();
       panelContainer = parser.parseFromString(panel, 'text/html');
 

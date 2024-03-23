@@ -1,10 +1,14 @@
 <html>
   <head>
-    <script async defer src="buttons.js"></script>
     <link rel="stylesheet" href="style.css" />
     <style>
       html {
         font-size: 62.5%;
+      }
+
+      html,
+      body {
+        height: fit-content;
       }
 
       .error {
@@ -16,78 +20,97 @@
   </head>
 
   <body class="w-96">
-    <div class="pt-4 pr-10 pb-10 pl-10">
-      <!-- <div class="sm:hidden">
-      <label for="tabs" class="sr-only">Select your country</label>
-      <select id="tabs"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 [.active>&]:bg-gray-700 [.active>&]:border-gray-600 [.active>&]:placeholder-gray-400 [.active>&]:text-white [.active>&]:focus:ring-blue-500 [.active>&]:focus:border-blue-500">
-        <option>Profile</option>
-        <option>Dashboard</option>
-        <option>setting</option>
-        <option>Invoioce</option>
-      </select>
-    </div> -->
-      <!-- <ul
+    <div class="pb-10">
+      <ul
         class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
       >
-        <li class="grow active">
-          <a
-            href="#"
-            aria-current="page"
-            class="w-full inline-block p-4 text-shark bg-white active [.active>&]:bg-shark [.active>&]:text-white hover:bg-porcelain [.active>&]:hover:bg-capeCod"
+        <!-- <li class="grow">
+          <button
+            class="timer-section-button active w-full inline-block p-4 text-shark bg-white [.active&]:bg-shark [.active&]:text-white hover:bg-porcelain [.active&]:hover:bg-capeCod"
             >Timer</a
           >
-        </li>
-        <li class="grow">
-          <a
-            href="#"
-            class="w-full inline-block p-4 text-shark bg-white active [.active>&]:bg-shark [.active>&]:text-white hover:bg-porcelain [.active>&]:hover:bg-capeCod"
+        </li> -->
+        <!-- <li class="grow">
+          <button
+            class="playback-section-button w-full inline-block p-4 text-shark bg-white [.active&]:bg-shark [.active&]:text-white hover:bg-porcelain [.active&]:hover:bg-capeCod"
             >Video Speed</a
           >
-        </li>
-        <li class="grow">
+        </li> -->
+        <!-- <li class="grow">
           <a
             class="w-full inline-block p-4 text-shark bg-white active [.active>&]:bg-shark [.active>&]:text-white hover:bg-porcelain [.active>&]:hover:bg-capeCod"
             >Visits</a
           >
-        </li>
-      </ul> -->
-
-      <h1
-        id="timer"
-        class="mt-7 text-center text-shark whitespace-nowrap font-bold leading-tight text-4xl"
-      >
-        Calculating...
-      </h1>
-
-      <ul class="mt-2 flex text-sm font-medium text-center">
-        <li class="cursor-pointer w-full focus-within:z-10 active whole-course inline-block w-full p-3 text-gray-900 bg-gray-100 border border-black [.active&]:border-white-700 focus:outline-none [.active&]:bg-shark [.active&]:text-white [.active&]:hover:bg-capeCod hover:bg-porcelain">
-          Whole Course
-        </li>
-        <li class="cursor-pointer w-full focus-within:z-10 current-section inline-block w-full p-3 text-gray-900 bg-gray-100 border border-black [.active&]:border-white-700 focus:outline-none [.active&]:bg-shark [.active&]:text-white [.active&]:hover:bg-capeCod [.active&]:text-white hover:bg-porcelain">
-          Current Section
-        </li>
+        </li> -->
       </ul>
 
-      <div class="mt-7 flex gap-2.5">
-        <a
-          class="github-button"
-          href="https://github.com/edenizk/udemyRemainingTimerExtention/issues"
-          data-icon="octicon-issue-opened"
-          data-size="large"
-          aria-label="Issue edenizk/udemyRemainingTimerExtention on GitHub"
-          >Issue</a
+      <div class="timer-section active [.active&]:block hidden pr-10 pl-10">
+        <h1
+          id="timer"
+          class="mt-12 text-center text-shark whitespace-nowrap font-bold leading-tight text-4xl"
         >
-        <a
-          class="github-button"
-          href="https://github.com/edenizk/udemyRemainingTimerExtention"
-          data-icon="octicon-star"
-          data-size="large"
-          data-show-count="true"
-          aria-label="Star edenizk/udemyRemainingTimerExtention on GitHub"
-          >Star</a
-        >
+          Calculating...
+        </h1>
+  
+        <ul class="mt-4 flex text-sm font-medium text-center">
+          <li class="cursor-pointer w-full focus-within:z-10 active whole-course inline-block w-full p-3 text-gray-900 bg-gray-100 border border-black [.active&]:border-white-700 focus:outline-none [.active&]:bg-shark [.active&]:text-white [.active&]:hover:bg-capeCod hover:bg-porcelain">
+            Whole Course
+          </li>
+          <li class="cursor-pointer w-full focus-within:z-10 current-section inline-block w-full p-3 text-gray-900 bg-gray-100 border border-black [.active&]:border-white-700 focus:outline-none [.active&]:bg-shark [.active&]:text-white [.active&]:hover:bg-capeCod [.active&]:text-white hover:bg-porcelain">
+            Current Section
+          </li>
+        </ul>
+
       </div>
+
+      <!-- <div class="playback-section [.active&]:block hidden  pr-10 pl-10">
+        <h1
+          id="playback"
+          class="mt-12 text-shark whitespace-nowrap font-bold leading-tight text-2xl"
+        >
+          Playback speed
+        </h1>
+  
+        <div class="flex items-center justify-around mt-6">
+          <span class="playback-section--minus p-3 cursor-pointer border border-black hover:bg-porcelain">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M232-444v-72h496v72H232Z"/></svg>
+          </span>
+          <span class="playback-section--rate text-6xl">1.0</span>
+          <span class="playback-section--plus p-3 cursor-pointer border border-black hover:bg-porcelain">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M444-444H240v-72h204v-204h72v204h204v72H516v204h-72v-204Z"/></svg>
+          </span>
+        </div>
+      </div> -->
+    </div>
+
+    <div class="mt-4 flex gap-px">
+      <a 
+        href="https://github.com/edenizk/udemyRemainingTimerExtention"
+        target="_blank"
+      >
+        <img
+          src="https://img.shields.io/github/stars/edenizk/udemyRemainingTimerExtention?style=for-the-badge&labelColor=%232D2F31&color=%235624d0"
+          alt="Stars"
+        />
+      </a>
+      <a 
+        href="https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg"
+        target="_blank" 
+      >
+        <img
+          src="https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg?style=for-the-badge&label=Rate%20Us&labelColor=%232D2F31&color=%235624d0"
+          alt="Chrome Web Store Stars"
+        />
+      </a>
+      <a 
+        href="https://forms.gle/LPNYERGrMtu91wv3A"
+        target="_blank"
+      >
+        <img
+          src="https://img.shields.io/badge/Report-8A2BE2?style=for-the-badge&labelColor=%232D2F31&color=%232D2F31"
+          alt="Report"
+        />
+      </a>
     </div>
 
     <script src="timer.js"></script>
