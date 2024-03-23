@@ -29,6 +29,15 @@ const fetchPanelContainer = () => {
     }
   });
 
+  let checkboxes = panelContainer.querySelectorAll('input[data-purpose="progress-toggle-button"]');
+
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = checkbox.checked;
+    if (checkbox.checked) {
+      checkbox.setAttribute('ischecked', '');
+    }
+  });
+
   return {
     panel: panelContainer.outerHTML,
     playbackRate: playbackRate
@@ -61,7 +70,7 @@ const getLeftTime = (isFullCourse = true) => {
   try {
     items.forEach((item) => {
       const checkbox = item.querySelector('input[data-purpose="progress-toggle-button"]');
-      const isChecked = checkbox.checked;
+      const isChecked = checkbox.hasAttribute('ischecked');
 
       if (!isChecked) {
         let timer = item.querySelector('[class^="curriculum-item-link--bottom-row"] span');
