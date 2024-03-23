@@ -101,7 +101,7 @@ const setTimer = (val, timerEl) => {
   }
 
   timerEl.classList.remove('error');
-  timerEl.innerHTML = `${val.hours}:${val.minutes}H Left`;
+  timerEl.innerHTML = `${val.hours}hr ${val.minutes}min left`;
 };
 
 const handleSpeedChange = (val) => {
@@ -117,18 +117,19 @@ const handleSpeedChange = (val) => {
 }
 
 const callback = (tabs) => {
+  // TODO: divide this function in pieces
   const currentTab = tabs[0];
-  playbackEl = document.querySelector('.playback-section--rate');
-  const playbackMinus = document.querySelector('.playback-section--minus');
-  const playbackPlus = document.querySelector('.playback-section--plus');
+  // playbackEl = document.querySelector('.playback-section--rate');
+  // const playbackMinus = document.querySelector('.playback-section--minus');
+  // const playbackPlus = document.querySelector('.playback-section--plus');
 
-  playbackMinus.addEventListener('click', () => {
-    handleSpeedChange(getPlaybackRate - 0.25);
-  });
+  // playbackMinus.addEventListener('click', () => {
+  //   handleSpeedChange(getPlaybackRate - 0.25);
+  // });
 
-  playbackPlus.addEventListener('click', () => {
-    handleSpeedChange(getPlaybackRate + 0.25);
-  });
+  // playbackPlus.addEventListener('click', () => {
+  //   handleSpeedChange(getPlaybackRate + 0.25);
+  // });
 
   const timerSection = document.querySelector('.timer-section');
   const timerSectionButton = document.querySelector('.timer-section-button');
@@ -172,14 +173,14 @@ const callback = (tabs) => {
     playbackButton.classList.remove('active');
   });
 
-  playbackButton.addEventListener('click', () => {
-    if (playbackButton.classList.contains('active')) return;
+  // playbackButton.addEventListener('click', () => {
+  //   if (playbackButton.classList.contains('active')) return;
 
-    playbackSection.classList.add('active');
-    playbackButton.classList.add('active');
-    timerSection.classList.remove('active');
-    timerSectionButton.classList.remove('active');
-  });
+  //   playbackSection.classList.add('active');
+  //   playbackButton.classList.add('active');
+  //   timerSection.classList.remove('active');
+  //   timerSectionButton.classList.remove('active');
+  // });
 
   chrome.scripting.executeScript(
     {
