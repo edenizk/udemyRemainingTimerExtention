@@ -11,28 +11,42 @@ const fetchPanelContainer = () => {
   let playbackRate = 1.0;
 
   if (rateTextEl) {
-    console.log('videoEl', rateTextEl.innerText);
     playbackRate = parseFloat(rateTextEl.innerText.replace('x', ''));
   }
 
   const panelContainer = document.querySelector('[data-purpose="curriculum-section-container"]');
+  if (!panelContainer) {
+    return { panel: '', playbackRate };
+  }
+
+  const scrollContainer = document.querySelector('#ct-sidebar-scroll-container');
+  const previousScrollTop = scrollContainer ? scrollContainer.scrollTop : null;
+
   sections = panelContainer.querySelectorAll('[data-purpose=curriculum-section-container] > [data-purpose]');
 
   sections.forEach((section) => {
-    console.log('section', section)
     const header = section.querySelector('div');
     const checkbox = section.querySelector('span');
-    const isExpanded = checkbox.getAttribute('data-checked');
-
-    if (!isExpanded) {
+    const isExpanded = checkbox && checkbox.getAttribute('data-checked');
+    if (!isExpanded && header) {
       header.click();
     }
   });
 
-  let checkboxes = panelContainer.querySelectorAll('input[data-purpose="progress-toggle-button"]');
+  if (scrollContainer && previousScrollTop !== null) {
+    requestAnimationFrame(() => {
+      scrollContainer.scrollTop = previousScrollTop;
+      setTimeout(() => {
+        const maxScrollThreshold = scrollContainer.scrollHeight - scrollContainer.clientHeight - 50;
+        if (scrollContainer.scrollTop > maxScrollThreshold) {
+          scrollContainer.scrollTop = previousScrollTop;
+        }
+      }, 120);
+    });
+  }
 
+  let checkboxes = panelContainer.querySelectorAll('input[data-purpose="progress-toggle-button"]');
   checkboxes.forEach((checkbox) => {
-    checkbox.checked = checkbox.checked;
     if (checkbox.checked) {
       checkbox.setAttribute('ischecked', '');
     }
@@ -57,7 +71,9 @@ const getLeftTime = (isFullCourse = true) => {
     return { error: true, text: 'No section found.\nBe sure that you are at the udemy course tab and you started the course' };
   }
 
+  let remainingMinutes = 0;
   let totalMinutes = 0;
+  let watchedMinutes = 0;
 
   let items = isFullCourse
     ? panelContainer.querySelectorAll('[data-purpose^="curriculum-item-"][class*="item-link--common--"]')
@@ -71,20 +87,21 @@ const getLeftTime = (isFullCourse = true) => {
     items.forEach((item) => {
       const checkbox = item.querySelector('input[data-purpose="progress-toggle-button"]');
       const isChecked = checkbox.hasAttribute('ischecked');
-
-      if (!isChecked) {
-        let timer = item.querySelector('[class^="curriculum-item-link--bottom-row"] span');
-        if (timer) {
-          const time = parseInt(timer.innerHTML.replace('min', ''));
-          totalMinutes += isNaN(time) ? 0 : time;
+      let timer = item.querySelector('[class^="curriculum-item-link--bottom-row"] span');
+      if (timer) {
+        const time = parseInt(timer.innerHTML.replace('min', ''));
+        if (!isNaN(time)) {
+          totalMinutes += time;
+          if (isChecked) watchedMinutes += time; else remainingMinutes += time;
         }
       }
     });
 
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
+    const percentage = totalMinutes ? Math.round((watchedMinutes / totalMinutes) * 100) : 0;
+    const hours = Math.floor(remainingMinutes / 60);
+    const minutes = remainingMinutes % 60;
 
-    return { error: false, hours, minutes };
+    return { error: false, hours, minutes, remainingMinutes, watchedMinutes, totalMinutes, percentage };
   } catch (error) {
     return {
       error: true,
@@ -94,14 +111,36 @@ const getLeftTime = (isFullCourse = true) => {
 };
 
 const setTimer = (val, timerEl) => {
+  const progressFill = document.querySelector('#progress-fill');
+  const progressText = document.querySelector('#progress-text');
+
   if (!val || val.error) {
     timerEl.classList.add('error');
     timerEl.innerHTML = val ? val.text : 'Something went wrong 😿';
+    if (progressFill) progressFill.style.width = '0%';
+    if (progressText) progressText.innerText = '';
     return;
   }
 
   timerEl.classList.remove('error');
-  timerEl.innerHTML = `${val.hours}hr ${val.minutes}min left`;
+  const remHoursStr = val.hours > 0 ? `${val.hours}h ` : '';
+  timerEl.innerHTML = `${remHoursStr}${val.minutes}m left`;
+
+  if (progressFill && typeof val.percentage === 'number') {
+    progressFill.style.width = `${val.percentage}%`;
+    progressFill.parentElement.setAttribute('aria-valuenow', val.percentage);
+  }
+  if (progressText) {
+    const watchedH = Math.floor(val.watchedMinutes / 60);
+    const watchedM = val.watchedMinutes % 60;
+    const totalH = Math.floor(val.totalMinutes / 60);
+    const totalM = val.totalMinutes % 60;
+
+    const watchedStr = `${watchedH > 0 ? watchedH + 'h ' : ''}${watchedM}m`;
+    const totalStr = `${totalH > 0 ? totalH + 'h ' : ''}${totalM}m`;
+
+    progressText.innerText = `${val.percentage}% - ${watchedStr} / ${totalStr}`;
+  }
 };
 
 const handleSpeedChange = (val) => {

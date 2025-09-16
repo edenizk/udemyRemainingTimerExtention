@@ -51,6 +51,15 @@
         >
           Calculating...
         </h1>
+        <hr class="my-4 border-t border-porcelain dark:border-capeCod opacity-20" aria-hidden="true" />
+
+        <!-- Progress Bar -->
+        <div id="progress-container" class="mt-4">
+          <div class="h-3 w-full bg-porcelain relative overflow-hidden border border-shark/10" aria-label="Course progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="progress-fill" class="h-full bg-purple-500 transition-all duration-500 ease-out" style="width:0%"></div>
+          </div>
+          <div id="progress-text" class="mt-1 text-center text-lg text-shark select-none tracking-wide"></div>
+        </div>
   
         <ul class="mt-4 flex text-sm font-medium text-center">
           <li class="cursor-pointer w-full focus-within:z-10 active whole-course inline-block w-full p-3 text-gray-900 bg-gray-100 border border-black [.active&]:border-white-700 focus:outline-none [.active&]:bg-shark [.active&]:text-white [.active&]:hover:bg-capeCod hover:bg-porcelain">
