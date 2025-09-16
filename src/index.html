@@ -19,8 +19,8 @@
     </style>
   </head>
 
-  <body class="w-96">
-    <div class="pb-10">
+  <body class="w-[37rem]">
+    <div class="">
       <ul
         class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
       >
@@ -44,34 +44,34 @@
         </li> -->
       </ul>
 
-      <div class="timer-section active [.active&]:block hidden pr-10 pl-10">
+      <div class="timer-section active [.active&]:block hidden px-6 py-8">
         <h1
           id="timer"
-          class="mt-12 text-center text-shark whitespace-nowrap font-bold leading-tight text-4xl"
+          class="mt-4 text-center text-shark whitespace-nowrap font-bold leading-tight text-4xl"
         >
           Calculating...
         </h1>
-        <hr class="my-4 border-t border-porcelain dark:border-capeCod opacity-20" aria-hidden="true" />
+        <!-- <hr class="my-4 border-t border-porcelain dark:border-capeCod opacity-20" aria-hidden="true" /> -->
 
         <!-- Progress Bar -->
-        <div id="progress-container" class="mt-4">
-          <div class="h-3 w-full bg-porcelain relative overflow-hidden border border-shark/10" aria-label="Course progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="progress-container" class="mt-2">
+          <div class="h-3 w-full bg-porcelain relative overflow-hidden" aria-label="Course progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div id="progress-fill" class="h-full bg-purple-500 transition-all duration-500 ease-out" style="width:0%"></div>
           </div>
-          <div id="progress-text" class="mt-1 text-center text-lg text-shark select-none tracking-wide"></div>
+          <div id="progress-text" class="mt-3 text-center text-xl text-muted select-none tracking-wide"></div>
         </div>
   
-        <ul class="mt-4 flex text-sm font-medium text-center">
-          <li class="cursor-pointer w-full focus-within:z-10 active whole-course inline-block w-full p-3 text-gray-900 bg-gray-100 border border-black [.active&]:border-white-700 focus:outline-none [.active&]:bg-shark [.active&]:text-white [.active&]:hover:bg-capeCod hover:bg-porcelain">
+
+
+      </div>
+        <ul class="mt-4 flex text-2xl font-medium text-center border border-white-700 border-x-0">
+          <li class="cursor-pointer w-full focus-within:z-10 active whole-course inline-block w-full py-3 px-4 text-muted bg-transparent [.active&]:border-white-700 focus:outline-none [.active&]:bg-purple-500 [.active&]:text-white [.active&]:hover:bg-purple-500 hover:bg-porcelain">
             Whole Course
           </li>
-          <li class="cursor-pointer w-full focus-within:z-10 current-section inline-block w-full p-3 text-gray-900 bg-gray-100 border border-black [.active&]:border-white-700 focus:outline-none [.active&]:bg-shark [.active&]:text-white [.active&]:hover:bg-capeCod [.active&]:text-white hover:bg-porcelain">
+          <li class="cursor-pointer w-full focus-within:z-10 current-section inline-block w-full py-3 px-4 text-muted bg-transparent [.active&]:border-white-700 focus:outline-none [.active&]:bg-purple-500 [.active&]:text-white [.active&]:hover:bg-purple-500 [.active&]:text-white hover:bg-porcelain">
             Current Section
           </li>
         </ul>
-
-      </div>
-
       <!-- <div class="playback-section [.active&]:block hidden  pr-10 pl-10">
         <h1
           id="playback"
@@ -92,31 +92,37 @@
       </div> -->
     </div>
 
-    <div class="mt-4 flex gap-px">
-      <a 
+  <div class="flex divide-x divide-white-700 border border-white-700 overflow-hidden">
+      <a
         href="https://github.com/edenizk/udemyRemainingTimerExtention"
         target="_blank"
+        class="block w-full flex justify-center !border-white-700"
       >
         <img
-          src="https://img.shields.io/github/stars/edenizk/udemyRemainingTimerExtention?style=for-the-badge&labelColor=%232D2F31&color=%235624d0"
+          class="object-contain"
+          src="https://img.shields.io/github/stars/edenizk/udemyRemainingTimerExtention?style=for-the-badge&labelColor=%23FFFFFF&color=%23FFFFFF"
           alt="Stars"
         />
       </a>
-      <a 
+      <a
         href="https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg"
-        target="_blank" 
+        target="_blank"
+        class="block w-full flex justify-center !border-white-700"
       >
         <img
-          src="https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg?style=for-the-badge&label=Rate%20Us&labelColor=%232D2F31&color=%235624d0"
+          class="object-contain"
+          src="https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg?style=for-the-badge&label=Rate%20Us&labelColor=%23FFFFFF&color=%23FFFFFF"
           alt="Chrome Web Store Stars"
         />
       </a>
-      <a 
+      <a
         href="https://forms.gle/LPNYERGrMtu91wv3A"
         target="_blank"
+        class="block w-full flex justify-center !border-white-700"
       >
         <img
-          src="https://img.shields.io/badge/Report-8A2BE2?style=for-the-badge&labelColor=%232D2F31&color=%232D2F31"
+          class="object-contain"
+          src="https://img.shields.io/badge/Report-000000?style=for-the-badge&labelColor=%23FFFFFF&color=%23FFFFFF"
           alt="Report"
         />
       </a>
