@@ -1,4 +1,4 @@
-[![Chrome Web Store Stars](https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg?style=for-the-badge&label=Rate%20Us&labelColor=%232D2F31&color=%235624d0)](https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg)
+[![Chrome Web Store Stars](https://img.shields.io/chrome-web-store/stars/klpecghaflmikhifcnphellhoacmnibg?style=for-the-badge&label=Rate%20Us&labelColor=%232D2F31&color=%235624d0)](https://chromewebstore.google.com/detail/klpecghaflmikhifcnphellhoacmnibg)[![BuyMeACoffee](https://raw.githubusercontent.com/pachadotdev/buymeacoffee-badges/main/bmc-white.svg)](https://buymeacoffee.com/dkpix)
 
 # Udemy Remaining Timer Extension For Chrome
 
