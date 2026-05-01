@@ -21,8 +21,6 @@ Now you can find the extension in google extension store 🙂
 3. Enable Developer Mode by clicking the toggle switch next to Developer mode.  
 4. Click the LOAD UNPACKED button and select the dist folder inside the extension directory.  
 
-![This is an image](https://wd.imgix.net/image/BrQidfK9jaQyIHwdw91aVpkPiib2/iYdLKFsJ1KSVGLhbLRvS.png?auto=format&w=650)
-
 More info at https://developer.chrome.com/docs/extensions/mv2/getstarted/#manifest
 
 
@@ -31,10 +29,17 @@ More info at https://developer.chrome.com/docs/extensions/mv2/getstarted/#manife
 ### Getting Started
 To contribute to this project, follow these simple steps:
 
-1. Install packages using `yarn` or `yarn install`
-   
-2. Start the project by running `yarn dev` in your terminal.
+1. Run ```git clone https://github.com/vagman/udemyRemainingTimerExtention.git```
 
-3. Additionally, on a split terminal, run `npx tailwindcss -i ./src/input.css -o ./dist/style.css --watch`. (One-command setup might come later!)
+2. Install ```yarn``` if you haven't already by running ```npm install --global yarn```. Verify ```yarn --version```
+    ```shell
+    C:/udemyRemainingTimerExtention> yarn --version 
+    1.22.22
+    ```
+3. Install packages using `yarn` or `yarn install`
+   
+4. Start the project by running `yarn dev` in your terminal.
+
+5. Additionally, on a split terminal, run `npx tailwindcss -i ./src/input.css -o ./dist/style.css --watch`. (One-command setup might come later!)
 
 And that's it! You're all set to contribute. Feel free to create an issue and assign yourself to avoid conflicts with others. 😊
